@@ -238,7 +238,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "7d50e4f3e3efe2feb16e3e6f2e96dcba53f5e566"
+      resolved-ref: "1fee14adb2db66dc0757b4cbdab9127acf5c8df7"
       url: "https://github.com/muthu-gokul/scutiwidgets.git"
     source: git
     version: "0.0.3"

@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:ecommerce_delivery/model/approveModel.dart';
 import 'package:ecommerce_delivery/model/orderedReceivedModel.dart';
 import 'package:ecommerce_delivery/notifiers/themeNotifier.dart';
+import 'package:ecommerce_delivery/pages/approvedOrders/billView.dart';
 import 'package:ecommerce_delivery/pages/approvedOrders/otpScreen.dart';
 import 'package:ecommerce_delivery/widgets/circle.dart';
 import 'package:ecommerce_delivery/widgets/customAppbar.dart';
@@ -123,7 +124,8 @@ class _ApprovedOrderState extends State<ApprovedOrder> {
                                                     selIndex=i;
                                                   });
                                                   if(j==0){
-                                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>DeliveryOtp()));
+                                                   // Navigator.push(context, MaterialPageRoute(builder: (context)=>DeliveryOtp()));
+                                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>BillView()));
                                                     deSelect();
 
                                                   }
