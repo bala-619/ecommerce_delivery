@@ -1,4 +1,5 @@
 
+import 'package:ecommerce_delivery/model/approveModel.dart';
 import 'package:ecommerce_delivery/model/orderedReceivedModel.dart';
 import 'package:ecommerce_delivery/notifiers/themeNotifier.dart';
 import 'package:ecommerce_delivery/widgets/circle.dart';
@@ -6,6 +7,7 @@ import 'package:ecommerce_delivery/widgets/customAppbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:scutiwidgets/expandedSection.dart';
 
 class ApprovedOrder extends StatefulWidget {
 
@@ -16,9 +18,14 @@ class ApprovedOrder extends StatefulWidget {
 class _ApprovedOrderState extends State<ApprovedOrder> {
   late  double width,height,width2,height2,gridWidth;
 
-  List<NewOrderReceivedModel> litems = [
-    NewOrderReceivedModel(name: "Ramesh",id:"3434355" ,items:"28" ,amt:"2,4000" ,address:"no:49, thiruverkadu ,Chennai-77" ,),
-    NewOrderReceivedModel(name: "Ramesh",id:"3434355" ,items:"28" ,amt:"2,4000" ,address:"no:49, thiruverkadu ,Chennai-77" ,)
+  int selRowIndex=-1,selIndex=-1;
+
+  List<ApproveModel> litems = [
+    ApproveModel(name: "Ramesh",id:"3434355" ,items:"28" ,amt:"2,4000" ,address:"no:49, thiruverkadu ,Chennai-77" ,isOutOfDelivery: false),
+    ApproveModel(name: "Ramesh",id:"3434355" ,items:"28" ,amt:"2,4000" ,address:"no:49, thiruverkadu ,Chennai-77" ,isOutOfDelivery: false),
+    ApproveModel(name: "Ramesh",id:"3434355" ,items:"28" ,amt:"2,4000" ,address:"no:49, thiruverkadu ,Chennai-77" ,isOutOfDelivery: true),
+    ApproveModel(name: "Ramesh",id:"3434355" ,items:"28" ,amt:"2,4000" ,address:"no:49, thiruverkadu ,Chennai-77" ,isOutOfDelivery: false),
+    ApproveModel(name: "Ramesh",id:"3434355" ,items:"28" ,amt:"2,4000" ,address:"no:49, thiruverkadu ,Chennai-77" ,isOutOfDelivery: false),
 
   ];
   @override
@@ -53,70 +60,126 @@ class _ApprovedOrderState extends State<ApprovedOrder> {
                               children: [
                                 Container(
                                   width: width,
-                                  height: 105,
-                                  margin: EdgeInsets.only(left: 10.0,right: 10.0,),
-                                  padding: const EdgeInsets.all(10.0),
+                                  height: 80,
+                                  margin: EdgeInsets.only(left: 10.0,right: 10.0,top: 10),
+                                  padding: const EdgeInsets.fromLTRB(10,10,0,0),
+                                  clipBehavior: Clip.antiAlias,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
                                     border: Border.all(color:th.borderColor),
                                   ),
-                                  child: Column(
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                          Container(
+                                              child:Text('${litems[i].name}',style: TextStyle(fontFamily: 'RM',fontSize: 16,color: th.text1,),)
+                                          ),
+                                          Row(
                                             children: [
                                               Container(
-                                                  child:Text('${litems[i].name}',style: TextStyle(fontFamily: 'RM',fontSize: 16,color: th.text1,),)
+                                                child:Text('Order id :',style: TextStyle(fontFamily: 'RR',fontSize: 15,color: th.text1,),),
                                               ),
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    child:Text('Order id :',style: TextStyle(fontFamily: 'RR',fontSize: 15,color: th.text1,),),
-                                                  ),
-                                                  Text('${litems[i].id}',style: TextStyle(fontFamily: 'RR',fontSize: 15,color: th.text1,),)
-                                                ],
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    child:Text('28 Items  ',style: TextStyle(fontFamily: 'RR',fontSize: 13,color: th.text1.withOpacity(0.5),),),
-                                                  ),
-                                                  Text('${litems[i].amt}',style: TextStyle(fontFamily: 'RM',fontSize: 15,color: th.primaryColor1,),)
-                                                ],
-                                              ),
-
+                                              Text('${litems[i].id}',style: TextStyle(fontFamily: 'RR',fontSize: 15,color: th.text1,),)
                                             ],
                                           ),
-                                          Spacer(),
-                                          Container(
-                                              width:100,
-                                              height:30,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(7),
-                                                color:Color(0XFF6B3CFA),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                child:Text('28 Items  ',style: TextStyle(fontFamily: 'RR',fontSize: 13,color: th.text1.withOpacity(0.5),),),
                                               ),
-                                              alignment:Alignment.center,
-                                              child:Text('Accept',style: TextStyle(fontFamily: 'RM',fontSize: 14,color: Colors.white,),)
+                                              Text('${litems[i].amt}',style: TextStyle(fontFamily: 'RM',fontSize: 15,color: th.primaryColor1,),)
+                                            ],
                                           ),
 
-                                          SizedBox(width: 10,)
                                         ],
                                       ),
+                                      Spacer(),
+                                      litems[i].isOutOfDelivery?Container(
+                                        child: Row(
+                                          children: [
+                                            for(int j=0;j<3;j++)
+                                            GestureDetector(
+                                              onTap:(){
+                                                if(selRowIndex==j){
+                                                  setState(() {
+                                                    selRowIndex=-1;
+                                                    selIndex=-1;
+                                                  });
+                                                }
+                                                else{
+                                                  setState(() {
+                                                    selRowIndex=j;
+                                                    selIndex=i;
+                                                  });
+                                                }
+                                              },
+                                              child: Circle(
+                                                hei: 35,
+                                                color:selRowIndex==j?th.borderColor.withOpacity(0.6): Colors.transparent,
+                                                widget: Center(
+                                                  child: Icon(j==0?Icons.visibility_outlined:
+                                                  j==1?Icons.location_on_outlined:Icons.local_phone,
+                                                    color: th.primaryColor1.withOpacity(0.8),size: 20,),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ):
+                                      Container(
+                                          width:100,
+                                          height:30,
+                                          margin: EdgeInsets.only(right: 10),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(7),
+                                            color:th.borderColor.withOpacity(0.6),
+                                          ),
+                                          alignment:Alignment.center,
+                                          child:Text('Out of delivery',style: TextStyle(fontFamily: 'RM',fontSize: 12,color: th.primaryColor1,),)
+                                      ),
+                                      litems[i].isOutOfDelivery?Align(
+                                        alignment: Alignment.bottomRight,
+                                        child: Container(
+                                          height: 32,
+                                          width: 37,
+                                          margin: EdgeInsets.only(top: 0),
+                                          decoration: BoxDecoration(
+                                            color: th.primaryColor1,
+                                            borderRadius: BorderRadius.only(topLeft: Radius.circular(15))
+                                          ),
+                                          alignment: Alignment.center,
+                                          child: Icon(Icons.electric_bike_outlined,color: Colors.white,size: 20,),
+                                        ),
+                                      ):Container(),
+
+                                    ],
+                                  ),
+                                ),
+                                CustomExpansionTile(
+                                  expand: selRowIndex==1&&selIndex==i,
+                                  child: Column(
+                                    children: [
                                       Container(
                                           width: width,
                                           alignment: Alignment.centerLeft,
-                                          margin: EdgeInsets.only(top: 5),
-                                          child:Text('${litems[i].address}',
-                                            style: TextStyle(fontFamily: 'RR',fontSize: 13,color: th.text1.withOpacity(0.5),),
+                                          margin: EdgeInsets.only(top: 5,left: 10),
+                                          child:Row(
+                                            children: [
+                                              Icon(Icons.location_on_outlined,
+                                                color: th.primaryColor1.withOpacity(0.8),size: 20,),
+                                              Text('  ${litems[i].address}',
+                                                style: TextStyle(fontFamily: 'RR',fontSize: 13,color: th.text1.withOpacity(0.5),),
+                                              ),
+                                            ],
                                           )
                                       ),
                                     ],
                                   ),
-                                ),
-                                Container(
+                                )
+                                /*Container(
                                   margin:EdgeInsets.only(right: 10,bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:MainAxisAlignment.end,
@@ -129,12 +192,13 @@ class _ApprovedOrderState extends State<ApprovedOrder> {
                                       Text('5 min ago',style: TextStyle(fontFamily: 'RR',fontSize: 12,color:th.text1.withOpacity(0.5),),)
                                     ],
                                   ),
-                                ),
+                                ),*/
                               ],
                             );
                           },
                         ),
-                      )
+                      ),
+                      SizedBox(height: 20,),
                     ]
                 ),
               ),
