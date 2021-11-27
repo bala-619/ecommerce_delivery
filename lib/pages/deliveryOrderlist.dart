@@ -7,18 +7,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-class CancelOrderList extends StatefulWidget {
+class DeliveryOrderList extends StatefulWidget {
 
   @override
-  _CancelOrderListState createState() => _CancelOrderListState();
+  _DeliveryOrderListState createState() => _DeliveryOrderListState();
 }
 
-class _CancelOrderListState extends State<CancelOrderList> {
+class _DeliveryOrderListState extends State<DeliveryOrderList> {
   late  double width,height,width2,height2,gridWidth;
 
   List<NewOrderReceivedModel> litems = [
-    NewOrderReceivedModel(name: "Ramesh",id:"3434355" ,items:"28" ,amt:"2,4000" ,address:"Customer Not pickup Phone" ,),
-    NewOrderReceivedModel(name: "Ramesh",id:"3434355" ,items:"28" ,amt:"2,4000" ,address:"Customer Not pickup Phone" ,)
+    NewOrderReceivedModel(name: "Ramesh",id:"3434355" ,items:"28" ,amt:"2,4000" ,address:"1134" ,),
+    NewOrderReceivedModel(name: "Ramesh",id:"3434355" ,items:"28" ,amt:"2,4000" ,address:"2823" ,)
 
   ];
   @override
@@ -95,11 +95,11 @@ class _CancelOrderListState extends State<CancelOrderList> {
                                             height:30,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(7),
-                                              border: Border.all(color: Color(0XFFF93338),),
-                                              color:Color(0XFFFFE5E6),
+                                              border: Border.all(color: Color(0XFFF3BAA38),),
+                                              color:Color(0XFFEBF5EA),
                                             ),
                                             alignment:Alignment.center,
-                                            child:Text('Cancel',style: TextStyle(fontFamily: 'RM',fontSize: 14,color: Color(0XFFF93338),),)
+                                            child:Text('Delivered',style: TextStyle(fontFamily: 'RM',fontSize: 14,color: Color(0XFFF3BAA38),),)
                                         ),
 
                                         SizedBox(width: 10,)
@@ -109,7 +109,7 @@ class _CancelOrderListState extends State<CancelOrderList> {
                                         width: width,
                                         alignment: Alignment.centerLeft,
                                         margin: EdgeInsets.only(top: 5),
-                                        child:Text('${litems[i].address}',
+                                        child:Text('Delivery OTP ${litems[i].address}',
                                           style: TextStyle(fontFamily: 'RR',fontSize: 13,color: th.text1.withOpacity(0.5),),
                                         )
                                     ),
