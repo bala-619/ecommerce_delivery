@@ -2,12 +2,12 @@
 import 'package:ecommerce_delivery/model/orderedReceivedModel.dart';
 import 'package:ecommerce_delivery/notifiers/themeNotifier.dart';
 import 'package:ecommerce_delivery/widgets/circle.dart';
+import 'package:ecommerce_delivery/widgets/customAppbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class NewOrderReceived extends StatefulWidget {
-  const NewOrderReceived({Key? key}) : super(key: key);
 
   @override
   _NewOrderReceivedState createState() => _NewOrderReceivedState();
@@ -38,49 +38,7 @@ class _NewOrderReceivedState extends State<NewOrderReceived> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      height: 100,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(35),bottomRight: Radius.circular(35)),
-                          color: th.primaryColor1
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 5,),
-                          Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    IconButton(onPressed: (){
-                                      // widget.voidCallback();
-                                      // Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ThemeSettings()));
-                                    },
-                                      icon: Icon(Icons.menu,color: Colors.white,size: 30,),
-                                    ),
-                                    Text('New Order Received',style: TextStyle(fontFamily: 'RR',fontSize: 16,color: Colors.white,),)
-                                  ],
-                                ),
-                                Container(
-                                    padding: EdgeInsets.only(right: 15.0),
-                                    child:   Row(
-                                      children: [
-                                        IconButton(onPressed: (){
-                                        },
-                                          icon: Icon(Icons.menu,color: Colors.white,size: 30,),
-                                        ),
-                                      ],
-                                    )
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    CustomAppBar(title: 'New Order Received'),
                     SizedBox(height: 10,),
                     Container(
                         padding: EdgeInsets.only(left:20),
