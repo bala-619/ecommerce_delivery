@@ -108,8 +108,14 @@ class _NewOrderReceivedState extends State<NewOrderReceived> {
                                         width: width,
                                         alignment: Alignment.centerLeft,
                                         margin: EdgeInsets.only(top: 5),
-                                        child:Text('${litems[i].address}',
-                                          style: TextStyle(fontFamily: 'RR',fontSize: 13,color: th.text1.withOpacity(0.5),),
+                                        child:Row(
+                                          children: [
+                                            Icon(Icons.location_on_outlined,
+                                              color: th.primaryColor1.withOpacity(0.8),size: 20,),
+                                            Text(' ${litems[i].address}',
+                                              style: TextStyle(fontFamily: 'RR',fontSize: 13,color: th.text1.withOpacity(0.5),),
+                                            ),
+                                          ],
                                         )
                                     ),
                                   ],
