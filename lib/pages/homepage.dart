@@ -1,5 +1,6 @@
 import 'package:ecommerce_delivery/notifiers/themeNotifier.dart';
 import 'package:ecommerce_delivery/pages/approvedOrders/approveOrders.dart';
+import 'package:ecommerce_delivery/pages/cancelOrderlist.dart';
 import 'package:ecommerce_delivery/pages/newOrderReceived.dart';
 import 'package:ecommerce_delivery/widgets/bottomPainter.dart';
 import 'package:ecommerce_delivery/widgets/circle.dart';
@@ -33,6 +34,7 @@ class _HomePageState extends State<HomePage> {
                 child:
                 bottomSelIndex==1?NewOrderReceived():
                 bottomSelIndex==2?ApprovedOrder():
+                bottomSelIndex==3?CancelOrderList():
                 Container(),
               ),
 
