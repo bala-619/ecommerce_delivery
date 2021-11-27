@@ -38,7 +38,7 @@ class _DeliveryOrderListState extends State<DeliveryOrderList> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomAppBar(title: 'Cancel Order List'),
+                    CustomAppBar(title: 'Delivered Order List'),
                     SizedBox(height: 10,),
                     Container(
                         padding: EdgeInsets.only(left:20),
