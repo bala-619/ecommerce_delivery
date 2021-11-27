@@ -1,12 +1,20 @@
 
+import 'dart:async';
+
 import 'package:ecommerce_delivery/model/approveModel.dart';
 import 'package:ecommerce_delivery/model/orderedReceivedModel.dart';
 import 'package:ecommerce_delivery/notifiers/themeNotifier.dart';
+import 'package:ecommerce_delivery/pages/approvedOrders/otpScreen.dart';
 import 'package:ecommerce_delivery/widgets/circle.dart';
 import 'package:ecommerce_delivery/widgets/customAppbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:provider/provider.dart';
+import 'package:scutiwidgets/authenticationPages/forgotPage.dart';
+import 'package:scutiwidgets/authenticationPages/mail-otp/otp_screen.dart';
+import 'package:scutiwidgets/authenticationPages/phone-otp/otp_screen.dart';
+import 'package:scutiwidgets/authenticationPages/resetPassword.dart';
 import 'package:scutiwidgets/expandedSection.dart';
 
 class ApprovedOrder extends StatefulWidget {
@@ -114,6 +122,15 @@ class _ApprovedOrderState extends State<ApprovedOrder> {
                                                     selRowIndex=j;
                                                     selIndex=i;
                                                   });
+                                                  if(j==0){
+                                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>DeliveryOtp()));
+                                                    deSelect();
+
+                                                  }
+                                                  else if(j==2){
+                                                    _callNumber();
+                                                    deSelect();
+                                                  }
                                                 }
                                               },
                                               child: Circle(
@@ -207,5 +224,17 @@ class _ApprovedOrderState extends State<ApprovedOrder> {
           )
       ),
     );
+  }
+  deSelect(){
+    Timer(Duration(milliseconds: 30), (){
+      setState(() {
+        selRowIndex=-1;
+        selIndex=-1;
+      });
+    });
+  }
+  _callNumber() async{
+    const number = '09898989898'; //set the number here
+    bool? res = await FlutterPhoneDirectCaller.callNumber(number);
   }
 }

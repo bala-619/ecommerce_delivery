@@ -38,6 +38,7 @@ dependencies:
   shared_preferences:
   permission_handler:
   provider:
+  flutter_phone_direct_caller:
   scutiwidgets:
     git:
       url: https://github.com/muthu-gokul/scutiwidgets.git
